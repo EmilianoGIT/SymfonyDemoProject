@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <h1>{{ post[0].title }}</h2>
+    <em>{{ post[0].name }}</em>
+    {# <em>{{ post.category.id }}</em> #}
+    <hr>
+    <img src="{{ '/uploads/' ~ post[0].image }}" alt="">
+{% endblock %}

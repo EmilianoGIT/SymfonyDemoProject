@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{{ path('home') }}">Symfony Tutorial</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{{ path('custom', {name: 'pippo'}) }}">Hey Immalink</a>
+      </li>
+
+
+      {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <li class="nav-item float-right">
+          <a class="nav-link" href="{{ path('post.index') }}">Posts</a>
+        </li>
+        <li class="nav-item float-right">
+          <a class="nav-link" href="{{ path('profile') }}">Profile</a>
+        </li>
+        <li class="nav-item float-right">
+          <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+        </li>
+      {% elseif is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
+        <li class="nav-item float-right">
+          <a class="nav-link" href="{{ path('app_login') }}">Login</a>
+        </li>
+        <li class="nav-item float-right">
+          <a class="nav-link" href="{{ path('register') }}">SignUp</a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
+
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
